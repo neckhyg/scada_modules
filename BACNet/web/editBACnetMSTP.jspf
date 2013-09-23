@@ -1,0 +1,252 @@
+<%--
+--%><%@ include file="/WEB-INF/jsp/include/tech.jsp" %>
+<%@page import="com.serotonin.bacnet4j.type.enumerated.ObjectType"%>
+
+<script type="text/javascript" src="${modulePath}/web/bacnet.js"></script>
+<script type="text/javascript">
+  bndwr = BACnetMSTPEditDwr;
+  <jsp:include page="bacnet.jspf"/>
+
+  function sendBACnetWhoIs() {
+      bndwr.sendBACnetMstpWhoIs($get("deviceId"), $get("commPortId"), $get("baudRate"), $get("thisStation"),
+              $get("retryCount"), $get("timeout"), $get("segTimeout"), $get("segWindow"), $get("retries"),
+              $get("maxReadMultipleReferencesSegmented"), $get("maxReadMultipleReferencesNonsegmented"), sendWhoIsCB);
+  }
+  
+  function sendObjectListRequest(cb) {
+      bndwr.sendMstpObjectListRequest($get("deviceId"), $get("commPortId"), $get("baudRate"), $get("thisStation"),
+              $get("retryCount"), $get("timeout"), $get("segTimeout"), $get("segWindow"), $get("retries"),
+              $get("maxReadMultipleReferencesSegmented"), $get("maxReadMultipleReferencesNonsegmented"),
+              $get("objListNetNumber"), $get("objListMac"), $get("objListLinkStation"), $get("objListDevId"), cb);
+  }
+  
+  function saveDataSourceImpl(basic) {
+      bndwr.saveBACnetMstpDataSource(basic, $get("updatePeriods"), $get("updatePeriodType"), $get("deviceId"),
+              $get("commPortId"), $get("baudRate"), $get("thisStation"), $get("retryCount"), $get("strict"),
+              $get("timeout"), $get("segTimeout"), $get("segWindow"), $get("retries"), 
+              $get("covSubscriptionTimeoutMinutes"), $get("maxReadMultipleReferencesSegmented"),
+              $get("maxReadMultipleReferencesNonsegmented"), saveDataSourceCB);
+  }
+  
+  function saveBACnetPointLocator(id, xid, name, locator, cb) {
+      bndwr.saveBACnetMSTPPointLocator(id, xid, name, locator, savePointCB);
+  }
+</script>
+    
+<tag:dataSourceAttrs descriptionKey="mod.bacnetMstp.desc" helpId="bacnetMstpDS">
+  <jsp:attribute name="extraPanels">
+    <td valign="top">
+      <div class="borderDiv marB">
+        <table>
+          <tr><td colspan="2" class="smallTitle"><fmt:message key="mod.bacnet.discovery"/></td></tr>
+          <tr>
+            <td colspan="2" align="center">
+              <input id="sendWhoIsBtn" type="button" value="<fmt:message key="mod.bacnet.sendWhoIs"/>" onclick="sendWhoIs();"/>
+              <input id="cancelWhoIsBtn" type="button" value="<fmt:message key="common.cancel"/>" onclick="cancelWhoIs();"/>
+            </td>
+          </tr>
+          
+          <tr><td colspan="2" id="whoIsMessage" class="formError"></td></tr>
+          
+          <tr>
+            <td colspan="2">
+              <div id="deviceListDiv">
+                <table cellspacing="1">
+                  <tr class="rowHeader">
+                    <td><fmt:message key="mod.bacnet.remoteDeviceInstanceNumber"/></td>
+                    <td><fmt:message key="mod.bacnet.remoteDeviceNetworkNumber"/></td>
+                    <td><fmt:message key="mod.bacnet.remoteDeviceMac"/></td>
+                    <td><fmt:message key="mod.bacnetMstp.remoteDeviceLinkStation"/></td>
+                    <td></td>
+                  </tr>
+                  <tbody id="iamsReceived"></tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+          
+          <tbody id="deviceObjectsMessage" style="display:none;" class="formError">
+            <tr><td colspan="2"><fmt:message key="mod.bacnet.gettingDeviceDetails"/></td></tr>
+          </tbody>
+          <tbody>
+            <tr><td colspan="2">
+              <div id="deviceObjectsDiv" style="margin-top: 10px;">
+                <div id="deviceObjectsHeader"></div>
+                <table cellspacing="1">
+                  <tr class="rowHeader">
+                    <td><fmt:message key="mod.bacnet.objectName"/></td>
+                    <td><fmt:message key="mod.bacnet.objectType"/></td>
+                    <td><fmt:message key="mod.bacnet.presentValue"/></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tbody id="deviceObjects"></tbody>
+                </table>
+                <div style="text-align: right">
+                  <a href="javascript:selectAllObjects('deviceObjects')"><fmt:message key="mod.bacnet.all"/></a> |
+                  <a href="javascript:unselectAllObjects('deviceObjects')"><fmt:message key="mod.bacnet.none"/></a> |
+                  <a href="javascript:addObjectsAsPoints('deviceObjects')"><fmt:message key="mod.bacnet.addSel"/></a>
+                </div>
+              </div>
+            </td></tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="borderDiv marB">
+        <table>
+          <tr><td colspan="2" class="smallTitle"><fmt:message key="mod.bacnet.objectList"/></td></tr>
+          <tr>
+            <td class="formLabel"><fmt:message key="mod.bacnet.remoteDeviceNetworkNumber"/></td>
+            <td class="formField"><input id="objListNetNumber" type="text" class="formShort"/></td>
+          </tr>
+          <tr>
+            <td class="formLabelRequired"><fmt:message key="mod.bacnet.remoteDeviceMac"/></td>
+            <td class="formField"><input id="objListMac" type="text"/></td>
+          </tr>
+          <tr>
+            <td class="formLabel"><fmt:message key="mod.bacnetMstp.remoteDeviceLinkStation"/></td>
+            <td class="formField"><input id="objListLinkIp" type="text"/></td>
+          </tr>
+          <tr>
+            <td class="formLabelRequired"><fmt:message key="mod.bacnet.remoteDeviceInstanceNumber"/></td>
+            <td class="formField"><input id="objListDevId" type="text" class="formShort"/></td>
+          </tr>
+          <tr>
+            <td colspan="2" align="center">
+              <input id="sendObjListBtn" type="button" value="<fmt:message key="mod.bacnet.sendObjList"/>" onclick="sendObjListRequest();"/>
+            </td>
+          </tr>
+          
+          <tr><td colspan="2">
+            <div id="objListMessage" class="error" style="margin-top: 10px;"></div>
+            
+            <div id="objectListDiv" style="margin-top: 10px;">
+              <div id="objectListHeader"></div>
+              <table cellspacing="1">
+                <tr class="rowHeader">
+                  <td><fmt:message key="mod.bacnet.objectName"/></td>
+                  <td><fmt:message key="mod.bacnet.objectType"/></td>
+                  <td><fmt:message key="mod.bacnet.presentValue"/></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tbody id="objectList"></tbody>
+              </table>
+              <div style="text-align: right">
+                <a href="javascript:selectAllObjects('objectList')"><fmt:message key="mod.bacnet.all"/></a> |
+                <a href="javascript:unselectAllObjects('objectList')"><fmt:message key="mod.bacnet.none"/></a> |
+                <a href="javascript:addObjectsAsPoints('objectList')"><fmt:message key="mod.bacnet.addSel"/></a>
+              </div>
+            </div>
+          </td></tr>
+        </table>
+      </div>
+    </td>
+  </jsp:attribute>
+  
+  <jsp:body>
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="dsEdit.updatePeriod"/></td>
+      <td class="formField">
+        <input type="text" id="updatePeriods" value="${dataSource.updatePeriods}" class="formShort"/>
+        <tag:timePeriods id="updatePeriodType" value="${dataSource.updatePeriodType}" s="true" min="true" h="true"/>
+      </td>
+    </tr>
+    
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnet.deviceId"/></td>
+      <td class="formField"><input id="deviceId" type="text" value="${dataSource.deviceId}"/></td>
+    </tr>
+    
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnetMstp.commPortId"/></td>
+      <td class="formField">
+        <c:choose>
+          <c:when test="${!empty commPortError}">
+            <input id="commPortId" type="hidden" value=""/>
+            <span class="formError">${commPortError}</span>
+          </c:when>
+          <c:otherwise>
+              <sst:select id="commPortId" value="${dataSource.commPortId}">
+              <c:forEach items="${commPorts}" var="port">
+                <sst:option value="${port.name}">${port.name}</sst:option>
+              </c:forEach>
+            </sst:select>
+          </c:otherwise>
+        </c:choose>
+      </td>
+    </tr>
+    
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnetMstp.baudRate"/></td>
+      <td class="formField">
+        <sst:select id="baudRate" value="${dataSource.baudRate}">
+          <sst:option>110</sst:option>
+          <sst:option>300</sst:option>
+          <sst:option>1200</sst:option>
+          <sst:option>2400</sst:option>
+          <sst:option>4800</sst:option>
+          <sst:option>9600</sst:option>
+          <sst:option>19200</sst:option>
+          <sst:option>38400</sst:option>
+          <sst:option>57600</sst:option>
+          <sst:option>76800</sst:option>
+          <sst:option>115200</sst:option>
+          <sst:option>230400</sst:option>
+          <sst:option>460800</sst:option>
+          <sst:option>921600</sst:option>
+        </sst:select>
+      </td>
+    </tr>
+    
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnetMstp.thisStation"/></td>
+      <td class="formField"><input id="thisStation" type="text" value="${dataSource.thisStation}"/></td>
+    </tr>
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnetMstp.retryCount"/></td>
+      <td class="formField"><input id="retryCount" type="text" value="${dataSource.retryCount}"/></td>
+    </tr>
+    
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnet.strict"/></td>
+      <td class="formField"><sst:checkbox id="strict" selectedValue="${dataSource.strict}"/></td>
+    </tr>
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnet.timeout"/></td>
+      <td class="formField"><input id="timeout" type="text" value="${dataSource.timeout}"/></td>
+    </tr>
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnet.segmentTimeout"/></td>
+      <td class="formField"><input id="segTimeout" type="text" value="${dataSource.segTimeout}"/></td>
+    </tr>
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnet.segmentWindow"/></td>
+      <td class="formField"><input id="segWindow" type="text" value="${dataSource.segWindow}"/></td>
+    </tr>
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnet.retries"/></td>
+      <td class="formField"><input id="retries" type="text" value="${dataSource.retries}"/></td>
+    </tr>
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnet.covLease"/></td>
+      <td class="formField"><input id="covSubscriptionTimeoutMinutes" type="text" 
+              value="${dataSource.covSubscriptionTimeoutMinutes}"/></td>
+    </tr>
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnet.maxReadMultSeg"/></td>
+      <td class="formField"><input id="maxReadMultipleReferencesSegmented" type="text" 
+              value="${dataSource.maxReadMultipleReferencesSegmented}"/></td>
+    </tr>
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="mod.bacnet.maxReadMultNonseg"/></td>
+      <td class="formField"><input id="maxReadMultipleReferencesNonsegmented" type="text" 
+              value="${dataSource.maxReadMultipleReferencesNonsegmented}"/></td>
+    </tr>
+  </jsp:body>
+</tag:dataSourceAttrs>
+
+<jsp:include page="points.jspf">
+  <jsp:param name="linkKey" value="mod.bacnetMstp.remoteDeviceLinkStation"/>
+</jsp:include>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="sqlPP" key="dox.sqlPP" filename="sqlPP.htm">
+    <relation id="sqlDS"/>
+  </item>
+
+  <item id="sqlDS" key="dox.sqlDS" filename="sqlDS.htm">
+    <relation id="sqlPP"/>
+  </item>
+</doxManifest>

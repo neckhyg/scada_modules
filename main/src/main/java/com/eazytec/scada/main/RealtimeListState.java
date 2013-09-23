@@ -1,0 +1,49 @@
+package com.eazytec.scada.main;
+
+import com.serotonin.ShouldNeverHappenException;
+import com.serotonin.m2m2.web.dwr.beans.BasePointState;
+import org.apache.commons.lang3.StringUtils;
+
+public class RealtimeListState extends BasePointState{
+    private String value;
+    private String time;
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    @Override
+    public RealtimeListState clone() {
+        try {
+            return (RealtimeListState) super.clone();
+        }
+        catch (CloneNotSupportedException e) {
+            throw new ShouldNeverHappenException(e);
+        }
+    }
+
+    public void removeEqualValue(RealtimeListState that) {
+        super.removeEqualValue(that);
+        if (StringUtils.equals(value, that.value))
+            value = null;
+        if (StringUtils.equals(time, that.time))
+            time = null;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return value == null && time == null && super.isEmpty();
+    }
+}

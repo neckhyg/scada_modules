@@ -1,0 +1,13 @@
+<%--
+--%><%@page import="com.serotonin.m2m2.modbus.vo.ModbusTcpDataSourceVO"%>
+<%@ include file="/WEB-INF/jsp/include/tech.jsp" %>
+
+<script type="text/javascript">
+</script>
+
+
+<tr>
+  <td class="formLabelRequired"><fmt:message key="dsEdit.modbusTcp.port"/></td>
+  <td class="formField"><input id="port" type="text" value="${dataSource.port}"/></td>
+</tr>
+

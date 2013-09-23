@@ -1,0 +1,4 @@
+/target
+/lib/sql-console*.jar
+*.iml
+*~

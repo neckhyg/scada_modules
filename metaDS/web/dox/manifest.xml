@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="metaDS" key="dox.metaDS" filename="metaDS.htm">
+    <relation id="metaPP"/>
+  </item>
+  
+  <item id="metaPP" key="dox.metaPP" filename="metaPP.htm">
+    <relation id="metaDS"/>
+  </item>
+</doxManifest>

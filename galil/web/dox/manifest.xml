@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="galilPP" key="dox.galilPP" filename="galilPP.htm">
+    <relation id="galilDS"/>
+  </item>
+  
+  <item id="galilDS" key="dox.galilDS" filename="galilDS.htm">
+    <relation id="galilPP"/>
+  </item>
+</doxManifest>

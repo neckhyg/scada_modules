@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="pachubeDS" key="dox.pachubeDS" filename="pachubeDS.htm">
+    <relation id="pachubePP"/>
+    <relation id="pachubePublishing"/>
+  </item>
+  
+  <item id="pachubePP" key="dox.pachubePP" filename="pachubePP.htm">
+    <relation id="pachubeDS"/>
+  </item>
+  
+  <item id="pachubePublishing" key="dox.pachubePublishing" filename="pachubePublishing.htm">
+    <relation id="pachubeDS"/>
+  </item>
+</doxManifest>

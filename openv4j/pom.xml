@@ -1,0 +1,173 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.eazytec.scada</groupId>
+  <artifactId>openv4j</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <name>openv4j</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>servlet-api</artifactId>
+          <version>2.5</version>
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>jsp-api</artifactId>
+          <version>2.0</version>
+          <scope>provided</scope>
+      </dependency>
+      <dependency>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+          <version>1.1</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-lang3</artifactId>
+          <version>3.1</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-web</artifactId>
+          <version>3.2.0.RELEASE</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-webmvc</artifactId>
+          <version>3.2.0.RELEASE</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework</groupId>
+          <artifactId>spring-jdbc</artifactId>
+          <version>3.2.0.RELEASE</version>
+      </dependency>
+      <dependency>
+          <groupId>org.directwebremoting</groupId>
+          <artifactId>dwr</artifactId>
+          <version>2.0.10</version>
+      </dependency>
+      <dependency>
+          <groupId>joda-time</groupId>
+          <artifactId>joda-time</artifactId>
+          <version>2.1</version>
+      </dependency>
+      <dependency>
+          <groupId>com.serotonin</groupId>
+          <artifactId>json</artifactId>
+          <version>1.0</version>
+          <scope>system</scope>
+          <systemPath>${project.basedir}/../../scada_core/lib/com.serotonin.json.jar</systemPath>
+      </dependency>
+      <dependency>
+          <groupId>com.serotonin</groupId>
+          <artifactId>providers</artifactId>
+          <version>1.0</version>
+          <scope>system</scope>
+          <systemPath>${project.basedir}/../../scada_core/lib/com.serotonin.providers.jar</systemPath>
+      </dependency>
+      <dependency>
+          <groupId>com.serotonin</groupId>
+          <artifactId>timer</artifactId>
+          <version>1.0</version>
+          <scope>system</scope>
+          <systemPath>${project.basedir}/../../scada_core/lib/com.serotonin.timer.jar</systemPath>
+      </dependency>
+      <dependency>
+          <groupId>com.serotonin</groupId>
+          <artifactId>utils</artifactId>
+          <version>1.0</version>
+          <scope>system</scope>
+          <systemPath>${project.basedir}/../../scada_core/lib/com.serotonin.utils.jar</systemPath>
+      </dependency>
+      <dependency>
+          <groupId>com.eazytec.scada</groupId>
+          <artifactId>core</artifactId>
+          <version>2.0.7</version>
+          <scope>system</scope>
+          <systemPath>${project.basedir}/../../scada_core/lib/scada-core-2.0.7.jar</systemPath>
+      </dependency>
+  </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <excludes>
+                        <exclude>${project.basedir}/classes/**</exclude>
+                    </excludes>
+                    <outputDirectory>
+                        ${project.basedir}/lib
+                    </outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId> maven-assembly-plugin </artifactId>
+                <version>2.4</version>
+                <configuration >
+                    <!--  not append assembly id in release file name  -->
+                    <appendAssemblyId> false </appendAssemblyId>
+                    <descriptors >
+                        <descriptor> src/main/assemble/package.xml </descriptor>
+                    </descriptors>
+                    <outputDirectory>${project.basedir}/../../scada_core/web/modules/</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id> make-assembly </id>
+                        <phase> package </phase>
+                        <goals>
+                            <goal> single </goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>lib</directory>
+                            <includes>
+                                <include>**/openv4j*.jar</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.basedir}/../../scada_core/web/modules/</directory>
+                            <includes>
+                                <include>openv4j*.zip</include>
+                                <include>openv4j/**</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

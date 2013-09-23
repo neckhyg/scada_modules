@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="wiboxDS" key="dox.wiboxDS" filename="wiboxDS.htm">
+    <relation id="wiboxPP"/>
+  </item>
+  
+  <item id="wiboxPP" key="dox.wiboxPP" filename="wiboxPP.htm">
+    <relation id="wiboxDS"/>
+  </item>
+</doxManifest>

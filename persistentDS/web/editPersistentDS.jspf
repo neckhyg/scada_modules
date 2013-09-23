@@ -1,0 +1,78 @@
+<%--
+--%><%@ include file="/WEB-INF/jsp/include/tech.jsp" %>
+<%@page import="com.serotonin.m2m2.DataTypes"%>
+<%@page import="com.serotonin.m2m2.Common"%>
+
+<script type="text/javascript">
+  function initImpl() {
+      hide("editImg"+ <c:out value="<%= Common.NEW_ID %>"/>);
+  }
+  
+  function saveDataSourceImpl(basic) {
+      PersistentDataSourceDwr.savePersistentDataSource(basic, $get("port"),
+            $get("authorizationKey"), $get("acceptPointUpdates"), saveDataSourceCB);
+  }
+  
+  function appendPointListColumnFunctions(pointListColumnHeaders, pointListColumnFunctions) {
+      pointListColumnHeaders[pointListColumnHeaders.length] = "<fmt:message key="pointEdit.props.deviceName"/>";
+      pointListColumnFunctions[pointListColumnFunctions.length] = function(p) { return p.deviceName; };
+  }
+  
+  function editPointCBImpl(locator) {
+  }
+  
+  function savePointImpl(locator) {
+      delete locator.settable;
+      delete locator.dataTypeId;
+      delete locator.relinquishable;
+      PersistentDataSourceDwr.savePersistentPointLocator(currentPoint.id, $get("xid"), $get("name"), locator, savePointCB);
+  }
+  
+  function getRtStatus() {
+      setDisabled("getStatusBtn", true);
+      PersistentDataSourceDwr.getPersistentStatus(function(response) {
+          dwr.util.removeAllOptions("statusResults");
+          dwr.util.addOptions("statusResults", response.messages, "genericMessage");
+          setDisabled("getStatusBtn", false);
+      });
+  }
+</script>
+
+<tag:dataSourceAttrs descriptionKey="dsEdit.persistent.desc" helpId="persistentDS">
+  <jsp:attribute name="extraPanels">
+    <td valign="top">
+      <div class="borderDiv marB">
+        <table>
+          <tr><td class="smallTitle"><fmt:message key="dsEdit.persistent.status"/></td></tr>
+          <tr>
+            <td align="center">
+              <input id="getStatusBtn" type="button" value="<fmt:message key="dsEdit.persistent.getStatus"/>" onclick="getRtStatus();"/>
+            </td>
+          </tr>
+          
+          <tr><td><ul id="statusResults" style="padding-left: 20px;"></ul></td></tr>
+        </table>
+      </div>
+    </td>
+  </jsp:attribute>
+  
+  <jsp:body>
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="dsEdit.persistent.port"/></td>
+      <td class="formField"><input id="port" type="text" value="${dataSource.port}"/></td>
+    </tr>
+    
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="dsEdit.persistent.authorizationKey"/></td>
+      <td class="formField"><input id="authorizationKey" type="text" value="${dataSource.authorizationKey}"/></td>
+    </tr>
+    
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="dsEdit.persistent.acceptPointUpdates"/></td>
+      <td class="formField"><sst:checkbox id="acceptPointUpdates" selectedValue="${dataSource.acceptPointUpdates}"/></td>
+    </tr>
+  </jsp:body>
+</tag:dataSourceAttrs>
+
+<tag:pointList pointHelpId="persistentPP">
+</tag:pointList>

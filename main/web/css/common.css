@@ -1,0 +1,260 @@
+﻿@CHARSET "UTF-8";
+/*-----------------------------页面基础定义----------------------------------*/
+/*{border:0px solid #eee;margin:0;padding:0;list-style:none} */
+html,body,#cont {
+  width: 100%;
+  height: 100%;
+  overflow: hidden
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 18px;
+  cursor: default;
+  background-color:white;
+  margin: 0px;
+}
+
+
+/* -----------------------------清除浮动----------------------------- */
+.clear {
+  clear: both;
+}
+
+#heading{
+  position: relative;
+  width: 100%;
+  height: 60px;
+  /*	z-index: -1;*/
+  background: black;
+  -webkit-box-shadow: #6292c7,#a8cee7 0px 5px 10px;
+  -moz-box-shadow: #6292c7,#a8cee7 0px 5px 10px;
+  box-shadow: #6292c7,#a8cee7 0px 5px 10px;
+  background: -webkit-linear-gradient(#6292c7,#a8cee7);
+  background: -moz-linear-gradient(#6292c7,#a8cee7);
+  background: -ms-linear-gradient(#6292c7,#a8cee7);
+  background: linear-gradient(#6292c7,#a8cee7);
+  -pie-background: linear-gradient(#6292c7,#a8cee7);
+  behavior: url("/resources/PIE-1.0.0/PIE.htc");
+}
+
+.top_mid {
+  height: 60px;
+  margin-left: 600px;
+  padding-top: 25px;
+}
+
+.top_left {
+  float: left;
+  height: 60px;
+  width: 120px;
+}
+
+.top_right {
+  float: right;
+  height: 60px;
+}
+
+.top_right1 {
+  width: 300px;
+  height: 20px;
+  margin-top: 20px;
+  float: left;
+  -moz-border-radius: 12px;
+  -khtml-border-radius: 12px;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  background-color: rgb(157, 216, 255);
+  behavior: url("/resources/PIE-1.0.0/PIE.htc");
+}
+
+.top_right1 ul {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+
+.top_right1 ul li {
+  width: 8d0px;
+  height: 20px;
+  float: left;
+}
+.top_right1 ul li a{
+  text-decoration:none;
+}
+
+.top_right1 ul li span {
+  margin-left: 2px;
+  color: rgb(255, 255, 255);
+  line-height: 16px;
+  vertical-align: 20%;
+}
+
+.top_right1 ul li img {
+  margin-left: 8px;
+  margin-top: 2px;
+}
+
+#top_buttons {
+  width: 120px;
+  float: left;
+}
+
+#top_buttons img {
+  float: left;
+  margin: 2px;
+}
+
+/*--------------------------------页尾样式----------------------------------*/
+.bottom {
+  position: absolute;
+  height: 20px;
+  width: 100%;
+  z-index: 1;
+  bottom: 0;
+  background: rgb(34, 34, 34);
+}
+
+.bottom p {
+  text-align: center;
+  padding-top: 2px;
+  color: white;
+}
+
+.middle {
+  position: relative;
+  z-index: 1;
+}
+
+#left_menu {
+  float: left;
+  margin-left:5px;
+}
+
+#right_content {
+/*  width: 900px;
+  height: 540px;
+  float: left; */
+  font-size:15px;
+  padding: 3px;
+  margin-right:5px;
+  margin-bottom:5px;
+  background-color: rgb(238,238,238);
+  overflow-y: auto;
+  -moz-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border:1px solid;
+  border-color: rgb(224,224,224);
+  /* 	-webkit-box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 1); */
+  /* 	box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 1); */
+  zoom: 1;
+  behavior: url("/resources/PIE-1.0.0/PIE.htc");
+}
+
+.sideBarNav {
+font-size:15px;
+  width: 200px;
+  height: auto;
+  padding: 5px;
+  background-color: rgb(238, 238, 238);
+  -moz-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: rgb(224, 224, 224);
+  filter: alpha(opacity = 90);
+  behavior: url("/resources/PIE-1.0.0/PIE.htc");
+}
+
+.sideBarNav ul {
+  list-style: none outside none;
+  margin: 0px;
+  padding: 5px;
+}
+
+.sideBarNav li {
+  height: 25px;
+  line-height: 25px;
+}
+
+.sideBarNav li a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size:15px;
+}
+
+.innerTit {
+  width: 190px;
+  margin: 0px auto;
+  background-color: rgb(54, 159, 230);
+  display: block;
+  color: #FFFFFF;
+  padding: 5px;
+  cursor: pointer;
+  filter: alpha(opacity = 90);
+  behavior: url("/resources/PIE-1.0.0/PIE.htc");
+  border-radius:2px;
+}
+
+.borderDiv, .borderDivPadded {
+  border: 1px solid; 
+  border-color:rgb(224,224,224);
+}
+
+select, input, textarea {
+  color: #333333;
+  border: 1px solid; 
+  border-color:rgb(224,224,224);
+  padding: 2px;
+  margin-bottom: 2px;
+}
+
+.rowHeader td, .smRowHeader td {
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: rgb(179,179,179);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.dijitTextBox { 
+border-color: rgb(224,224,224) !important; 
+}
+
+.horzSeparator {
+	height: 1px;
+	background: rgb(224,224,224);
+	padding: 0px;
+}
+
+.labelDiv{
+border: 1px solid rgb(224,224,224);
+}
+
+.labelDiv, .windowDiv{
+background: rgb(238,238,238);
+}
+
+/*
+.simpleRenderer, .simpleRenderer2 {
+    border:1px solid rgb(224,224,224);
+    background:rgb(238,238,238,238);
+}
+*/
+
+
+.dijitBorderContainer-child{
+ border: none !important;
+}
+
+.dijitSplitContainer-dijitContentPane, .dijitBorderContainer-dijitContentPane{
+ padding: 0 !important;
+}
+
+.dijitBorderContainer {
+  padding: 0 !important;
+}

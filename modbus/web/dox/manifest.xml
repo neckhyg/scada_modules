@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="modbus-pp" key="modbus.dox.pp" filename="pp.htm">
+    <relation id="modbus-ip"/>
+    <relation id="modbus-serial"/>
+  </item>
+  
+  <item id="modbus-ip" key="modbus.dox.ip" filename="ip.htm">
+    <relation id="modbus-pp"/>
+    <relation id="modbus-serial"/>
+  </item>
+  
+  <item id="modbus-serial" key="modbus.dox.serial" filename="serial.htm">
+    <relation id="modbus-pp"/>
+    <relation id="modbus-ip"/>
+  </item>
+</doxManifest>

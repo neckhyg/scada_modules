@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="maintenanceEvents" key="dox.maintenanceEvents" filename="maintenanceEvents.htm">
+    <relation id="cronPatterns"/>
+    <relation id="eventDetectors"/>
+  </item>
+</doxManifest>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="jmxDS" key="dox.jmxDS" filename="jmxDS.htm">
+    <relation id="jmxPP"/>
+  </item>
+  
+  <item id="jmxPP" key="dox.jmxPP" filename="jmxPP.htm">
+    <relation id="jmxDS"/>
+  </item>
+</doxManifest>

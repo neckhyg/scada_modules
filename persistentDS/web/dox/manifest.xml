@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="persistentDS" key="dox.persistentDS" filename="persistentDS.htm">
+    <relation id="persistentPP"/>
+    <relation id="persistentPublishing"/>
+  </item>
+  
+  <item id="persistentPP" key="dox.persistentPP" filename="persistentDP.htm">
+    <relation id="persistentDS"/>
+  </item>
+  
+  <item id="persistentPublishing" key="dox.persistentPublishing" filename="persistentPublishing.htm">
+    <relation id="persistentDS"/>
+  </item>
+</doxManifest>

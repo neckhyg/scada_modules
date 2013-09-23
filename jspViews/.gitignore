@@ -1,0 +1,4 @@
+/target
+/lib/jsp-views*.jar
+*.iml
+*~

@@ -1,0 +1,4 @@
+/target
+/lib/graphical-views*.jar
+*.iml
+*~

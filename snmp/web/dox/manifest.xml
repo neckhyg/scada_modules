@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="snmpPP" key="dox.snmpPP" filename="snmpPP.htm"/>
+  <item id="snmpDS" key="dox.snmpDS" filename="snmpDS.htm"/>
+</doxManifest>

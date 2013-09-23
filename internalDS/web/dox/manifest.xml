@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="internalDS" key="dox.internalDS" filename="internalDS.htm">
+    <relation id="internalPP"/>
+  </item>
+  
+  <item id="internalPP" key="dox.internalPP" filename="internalPP.htm">
+    <relation id="internalDS"/>
+  </item>
+</doxManifest>

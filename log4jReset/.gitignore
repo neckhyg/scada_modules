@@ -1,0 +1,4 @@
+/target
+/lib/log4j-reset*.jar
+*.iml
+*~

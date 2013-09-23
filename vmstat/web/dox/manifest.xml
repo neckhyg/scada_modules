@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="vmstatDS" key="dox.vmstatDS" filename="vmstatDS.htm">
+    <relation id="vmstatPP"/>
+  </item>
+  
+  <item id="vmstatPP" key="dox.vmstatPP" filename="vmstatPP.htm">
+    <relation id="vmstatDS"/>
+  </item>
+</doxManifest>

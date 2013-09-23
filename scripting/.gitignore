@@ -1,0 +1,4 @@
+/target
+/lib/scripting*.jar
+*.iml
+*~

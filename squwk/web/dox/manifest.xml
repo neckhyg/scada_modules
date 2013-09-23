@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+<!--   <item id="squwkDS" key="dox.squwkDS" filename="squwkDS.htm"> -->
+<!--     <relation id="squwkPP"/> -->
+<!--     <relation id="squwkPublishing"/> -->
+<!--   </item> -->
+  
+<!--   <item id="squwkPP" key="dox.squwkPP" filename="squwkPP.htm"> -->
+<!--     <relation id="squwkDS"/> -->
+<!--   </item> -->
+  
+  <item id="squwkPublishing" key="dox.squwkPublishing" filename="squwkPublishing.htm">
+<!--     <relation id="squwkDS"/> -->
+  </item>
+</doxManifest>

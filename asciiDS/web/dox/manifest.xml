@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="asciiSerialDS" key="dox.asciiSerialDS" filename="asciiSerialDS.htm">
+    <relation id="asciiSerialPP"/>
+  </item>
+  
+  <item id="asciiSerialPP" key="dox.asciiSerialP" filename="asciiSerialPP.htm">
+    <relation id="asciiSerialDS"/>
+  </item>
+  
+  <item id="asciiFileReaderDS" key="dox.asciiFileReaderDS" filename="asciiFileReaderDS.htm">
+    <relation id="asciiFileReaderPP"/>
+  </item>
+  
+  <item id="asciiFileReaderPP" key="dox.asciiFileReaderP" filename="asciiFileReaderPP.htm">
+    <relation id="asciiFileReaderDS"/>
+  </item>
+</doxManifest>

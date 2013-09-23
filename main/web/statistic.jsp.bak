@@ -1,0 +1,80 @@
+<%--
+--%><%@page import="com.serotonin.m2m2.Constants"%><%--
+--%><%@page import="com.serotonin.m2m2.Common"%><%--
+--%><%@page import="com.serotonin.m2m2.view.ShareUser"%><%--
+--%><%@page pageEncoding="UTF-8"%><%--
+--%><%@ include file="/WEB-INF/jsp/include/tech.jsp" %><%--
+--%><%@ taglib prefix="main" tagdir="/WEB-INF/tags/main" %><%--
+--%><%@ taglib prefix="jview" tagdir="/WEB-INF/tags/jspViews" %>
+
+<main:eazyPage dwr="MainDwr" js="${modulePath}/web/js/view.js,${modulePath}/web/main.js">
+  <jsp:attribute name="styles">
+    <style>
+    </style>
+  </jsp:attribute>
+  
+
+  <jsp:body>
+    <script type="text/javascript">
+      <m2m2:moduleExists name="reports">
+      </m2m2:moduleExists>
+    </script>
+
+  <jview:init username="admin"/>
+
+    <div id="right_content">
+
+<table border="1">
+        <tr>
+          <td align="center" colspan="2">庆源大道</td> 
+          <td align="center" colspan="2">荆溪北路</td> 
+          <td align="center" colspan="2">金兰泵站</td> 
+        </tr>
+        <tr>
+          <td>COD分析仪</td> 
+          <td><jview:simplePoint xid="DP_QY0002"/></td> 
+          <td><jview:simplePoint xid="DP_JXB002"/></td> 
+          <td><jview:simplePoint xid="DP_JL0002"/></td> 
+        </tr>
+        <tr>
+          <td>pH分析仪</td> 
+          <td><jview:simplePoint xid="DP_QY0001"/></td> 
+          <td><jview:simplePoint xid="DP_JXB001"/></td> 
+          <td><jview:simplePoint xid="DP_JL0001"/></td> 
+        </tr>
+        <tr>
+          <td>氨氮分析仪</td> 
+          <td><jview:simplePoint xid="DP_QY0003"/></td> 
+          <td><jview:simplePoint xid="DP_JXB003"/></td> 
+          <td><jview:simplePoint xid="DP_JL0003"/></td> 
+        </tr>
+      </table>
+
+<h3>COD</h3>
+<jview:chart duration="1" durationType="hours" width="950" height="300">
+  <jview:chartPoint xid="DP_QY0002" color="red"/>
+  <jview:chartPoint xid="DP_JXB002" color="blue"/>
+  <jview:chartPoint xid="DP_JL0002" color="green"/>
+</jview:chart>
+
+<h3>pH</h3>
+<jview:chart duration="1" durationType="hours" width="950" height="300">
+  <jview:chartPoint xid="DP_QY0001" color="red"/>
+  <jview:chartPoint xid="DP_JXB001" color="blue"/>
+  <jview:chartPoint xid="DP_JL0001" color="green"/>
+</jview:chart>
+
+<h3>氨氮</h3>
+<jview:chart duration="1" durationType="hours" width="950" height="300">
+  <jview:chartPoint xid="DP_QY0003" color="red"/>
+  <jview:chartPoint xid="DP_JXB003" color="blue"/>
+  <jview:chartPoint xid="DP_JL0003" color="green"/>
+</jview:chart>
+      </div>
+  </jsp:body>
+</main:eazyPage>
+
+
+
+
+

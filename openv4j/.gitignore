@@ -1,0 +1,4 @@
+/target
+/lib/openv4j*.jar
+*.iml
+*~

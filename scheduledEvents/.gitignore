@@ -1,0 +1,4 @@
+/target
+/lib/scheduled-events*.jar
+*.iml
+*~

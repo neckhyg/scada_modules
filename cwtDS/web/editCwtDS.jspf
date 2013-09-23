@@ -1,0 +1,116 @@
+<%--
+--%><%@ include file="/WEB-INF/jsp/include/tech.jsp" %><%--
+--%><%@page import="com.serotonin.m2m2.DataTypes"%><%--
+--%><%@page import="com.serotonin.m2m2.Common"%><%--
+--%><%@ taglib prefix="cwt" tagdir="/WEB-INF/tags/cwtDS" %>
+
+<script type="text/javascript">
+  function initImpl() {
+//      hide("editImg"+ <c:out value="<%= Common.NEW_ID %>"/>);
+  }
+  
+  function saveDataSourceImpl(basic) {
+      CwtEditDwr.saveCwtDataSource(basic, $get("port"),
+            $get("bufferSize"), $get("idleTime"), saveDataSourceCB);
+  }
+  
+  function appendPointListColumnFunctions(pointListColumnHeaders, pointListColumnFunctions) {
+      pointListColumnHeaders[pointListColumnHeaders.length] = "<fmt:message key="pointEdit.props.deviceName"/>";
+      pointListColumnFunctions[pointListColumnFunctions.length] = function(p) { return p.deviceName; };
+  }
+  
+  function editPointCBImpl(locator) {
+      $set("deviceId", locator.deviceId);
+      $set("dataId", locator.dataId);
+      $set("dataTypeId", locator.dataTypeId);
+      $set("multiplier", locator.multiplier);
+      $set("additive", locator.additive);
+  }
+  
+  function savePointImpl(locator) {
+      delete locator.settable;
+
+      locator.deviceId = $get("deviceId");
+      locator.dataId = $get("dataId");
+      locator.dataTypeId = $get("dataTypeId");
+      locator.multiplier = $get("multiplier");
+      locator.additive = $get("additive");
+
+      CwtEditDwr.saveCwtPointLocator(currentPoint.id, $get("xid"), $get("name"), locator, savePointCB);
+  }
+  
+  function getRtStatus() {
+      setDisabled("getStatusBtn", true);
+      CwtEditDwr.getCwtStatus(function(response) {
+          dwr.util.removeAllOptions("statusResults");
+          dwr.util.addOptions("statusResults", response.messages, "genericMessage");
+          setDisabled("getStatusBtn", false);
+      });
+  }
+</script>
+
+<tag:dataSourceAttrs descriptionKey="dsEdit.cwt.desc" helpId="cwtDS">
+  <jsp:attribute name="extraPanels">
+    <td valign="top">
+      <div class="borderDiv marB">
+        <table>
+          <tr><td class="smallTitle"><fmt:message key="dsEdit.cwt.status"/></td></tr>
+          <tr>
+            <td align="center">
+              <input id="getStatusBtn" type="button" value="<fmt:message key="dsEdit.cwt.getStatus"/>" onclick="getRtStatus();"/>
+            </td>
+          </tr>
+          
+          <tr><td><ul id="statusResults" style="padding-left: 20px;"></ul></td></tr>
+        </table>
+      </div>
+    </td>
+  </jsp:attribute>
+  
+  <jsp:body>
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="dsEdit.cwt.port"/></td>
+      <td class="formField"><input id="port" type="text" value="${dataSource.port}"/></td>
+    </tr>
+
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="dsEdit.cwt.bufferSize"/></td>
+      <td class="formField"><input id="bufferSize" type="text" value="${dataSource.bufferSize}"/></td>
+    </tr>
+
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="dsEdit.cwt.idleTime"/></td>
+      <td class="formField"><input id="idleTime" type="text" value="${dataSource.idleTime}"/></td>
+    </tr>
+  </jsp:body>
+</tag:dataSourceAttrs>
+
+<tag:pointList pointHelpId="cwtPP">
+  <tr>
+    <td id="fieldNameLabel" class="formLabelRequired"><fmt:message key="dsEdit.cwt.deviceId"/></td>
+    <td class="formField"><input type="text" id="deviceId"/></td>
+  </tr>
+
+  <tr>
+    <td class="formLabelRequired"><fmt:message key="dsEdit.cwt.pointDataType"/></td>
+    <td class="formField"><tag:dataTypeOptions name="dataTypeId" excludeImage="true" excludeAlphanumeric="true" excludeMultistate="true"/></td>
+  </tr>
+
+  <tbody id="columnBasedProperties">
+    <tr>
+      <td class="formLabelRequired"><fmt:message key="dsEdit.cwt.dataId"/></td>
+      <td class="formField"><cwt:dataId id="dataId" name="dataId" /></td>
+    </tr>
+  </tbody>
+
+    <tr>
+      <td class="formLabel"><fmt:message key="dsEdit.cwt.multiplier"/></td>
+      <td class="formField"><input type="text" id="multiplier"/></td>
+    </tr>
+
+    <tr>
+      <td class="formLabel"><fmt:message key="dsEdit.cwt.additive"/></td>
+      <td class="formField"><input type="text" id="additive"/></td>
+    </tr>
+
+</tag:pointList>

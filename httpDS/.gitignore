@@ -1,0 +1,4 @@
+/target
+/lib/http-ds*.jar
+*.iml
+*~

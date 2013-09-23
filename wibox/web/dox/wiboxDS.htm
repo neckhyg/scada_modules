@@ -1,0 +1,24 @@
+<h1>Overview</h1>
+<p>
+  The WiBox HTTP data source accepts HTTP GET or POST requests from Aginova WiBox equipment. Mango listens for requests
+  at the endpoint "/wibox". For example, your full URL might be http://192.168.0.1:8080/wibox". Multiple instances of 
+  WiBox equipment can send data to the same endpoint. Each instance can use a different password in order to have the
+  requests from each handled by a different data source. Alternatively, instances can use the same password and requests
+  from them all can be handled by the same data source. 
+</p>
+
+<h1>Configuration</h1>
+<p>
+  Every data source requires a <b>Name</b>, which can be any description, and an <b>XID</b>, which must be unique among
+  all data sources. The <b>Password</b> is the password value sent by the WiBox instance. Only requests with a password
+  that matches this value will be handled.
+</p>
+
+<h1>Tools</h1>
+<p>
+  The WiBox request listener section can be used to monitor the WiBox requests that Mango is currently receiving. Click
+  <b>Listen filtered</b> to only display requests with a password that matches the data source properties value, or 
+  <b>Listen all</b> to display all WiBox requests received. Click <b>Clear</b> to clear the current list of messages. 
+  Click <b>Cancel</b> to stop listening for messages. Use of this listener does not affect the functioning of WiBox
+  data sources.
+</p>

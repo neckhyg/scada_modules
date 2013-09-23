@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="bacnetIpDS" key="dox.bacnetIpDS" filename="bacnetIpDS.htm"/>
+  <item id="bacnetMstpDS" key="dox.bacnetMstpDS" filename="bacnetMstpDS.htm"/>
+  <item id="bacnetPP" key="dox.bacnetPP" filename="bacnetPP.htm"/>
+</doxManifest>

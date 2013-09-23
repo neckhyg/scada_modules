@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="virtual-pp" key="dox.virtualPP" filename="pp.htm">
+    <relation id="virtual-ds"/>
+  </item>
+
+  <item id="virtual-ds" key="dox.virtualDS" filename="ds.htm">
+    <relation id="virtual-pp"/>
+  </item>
+</doxManifest>

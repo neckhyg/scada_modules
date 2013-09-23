@@ -1,0 +1,4 @@
+/target
+/lib/internal-ds*.jar
+*.iml
+*~

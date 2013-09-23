@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doxManifest>
+  <item id="httpRetrieverDS" key="dox.httpRetrieverDS" filename="httpRetrieverDS.htm">
+    <relation id="httpRetrieverPP"/>
+  </item>
+  
+  <item id="httpRetrieverPP" key="dox.httpRetrieverPP" filename="httpRetrieverPP.htm">
+    <relation id="httpRetrieverDS"/>
+  </item>
+  
+  <item id="httpReceiverDS" key="dox.httpReceiverDS" filename="httpReceiverDS.htm">
+    <relation id="datetimeFormats"/>
+    <relation id="httpSenderPublishing"/>
+    <relation id="httpReceiverPP"/>
+  </item>
+
+  <item id="httpReceiverPP" key="dox.httpReceiverPP" filename="httpReceiverPP.htm">
+    <relation id="httpReceiverDS"/>
+  </item>
+  
+  <item id="httpSenderPublishing" key="dox.httpSenderPublishing" filename="httpSenderPublishing.htm">
+    <relation id="datetimeFormats"/>
+  </item>
+  
+  <item id="httpImageDS" key="dox.httpImageDS" filename="httpImageDS.htm">
+    <relation id="httpImagePP"/>
+  </item>
+  
+  <item id="httpImagePP" key="dox.httpImagePP" filename="httpImagePP.htm">
+    <relation id="httpImageDS"/>
+  </item>
+</doxManifest>

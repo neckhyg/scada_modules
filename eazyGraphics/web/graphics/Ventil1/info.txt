@@ -1,0 +1,6 @@
+name=Ventil
+type=imageSet
+width=64
+height=64
+text.x=5
+text.y=55

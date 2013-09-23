@@ -1,0 +1,42 @@
+<%--
+    This should be imported into script tags. It provides Javascript code that uses server-side functionality, and
+    so cannot be included in a js file.
+--%><%@ include file="/WEB-INF/jsp/include/tech.jsp" %>
+<%@page import="com.serotonin.bacnet4j.type.enumerated.ObjectType"%>
+
+msg["mod.bacnet.sendingWhoIs"] = "<fmt:message key="mod.bacnet.sendingWhoIs"/>";
+msg["mod.bacnet.getDetails"] = "<fmt:message key="mod.bacnet.getDetails"/>";
+msg["mod.bacnet.listenerStopped"] = "<fmt:message key="mod.bacnet.listenerStopped"/>";
+msg["mod.bacnet.tester.sendObjectList"] = "<fmt:message key="mod.bacnet.tester.sendObjectList"/>";
+msg["mod.bacnet.addPoint"] = "<fmt:message key="mod.bacnet.addPoint"/>";
+msg["mod.bacnet.device"] = "<fmt:message key="mod.bacnet.device"/>";
+msg["mod.bacnet.objects"] = "<fmt:message key="mod.bacnet.objects"/>";
+msg["dsEdit.saveWarning"] = "<fmt:message key="dsEdit.saveWarning"/>";
+
+function objectTypeIsSettable(objectType) {
+    return objectType == <c:out value="<%= ObjectType.analogOutput.intValue() %>"/> || 
+          objectType == <c:out value="<%= ObjectType.analogValue.intValue() %>"/> || 
+          objectType == <c:out value="<%= ObjectType.binaryOutput.intValue() %>"/> || 
+          objectType == <c:out value="<%= ObjectType.binaryValue.intValue() %>"/> || 
+          objectType == <c:out value="<%= ObjectType.multiStateOutput.intValue() %>"/> || 
+          objectType == <c:out value="<%= ObjectType.multiStateValue.intValue() %>"/>;
+};
+
+function objectTypeIsValid(objectType) {
+    return objectType == <c:out value="<%= ObjectType.accessDoor.intValue() %>"/> || 
+          objectType == <c:out value="<%= ObjectType.accumulator.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.analogInput.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.analogOutput.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.analogValue.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.averaging.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.binaryInput.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.binaryOutput.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.binaryValue.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.lifeSafetyPoint.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.lifeSafetyZone.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.loop.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.multiStateInput.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.multiStateOutput.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.multiStateValue.intValue() %>"/> ||
+          objectType == <c:out value="<%= ObjectType.pulseConverter.intValue() %>"/>;
+};
