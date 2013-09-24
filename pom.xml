@@ -53,6 +53,7 @@
         <!--<module>dnp3</module>-->
         <module>metaDS</module>
         <module>cwtDS</module>
+        <module>eazySerial</module>
     </modules>
 
 </project>

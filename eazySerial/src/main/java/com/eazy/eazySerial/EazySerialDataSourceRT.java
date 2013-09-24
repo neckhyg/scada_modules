@@ -96,12 +96,12 @@ public class EazySerialDataSourceRT extends PollingDataSource implements Runnabl
         if(readSerial !=null)
         readSerial.start();
     }
-    public String ReadPort(int Length)
-    {
-        String Msg;
-        Msg = serialBuffer.GetMsg(Length);
-        return Msg;
-    }
+//    public String ReadPort(int Length)
+//    {
+//        String Msg;
+//        Msg = serialBuffer.GetMsg(Length);
+//        return Msg;
+//    }
 
     @Override
     public void run() {
